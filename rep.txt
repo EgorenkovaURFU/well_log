@@ -271,3 +271,364 @@ weighted avg       0.93      0.93      0.93     24284
 
 Добавила еще один слой
 hidden_size=[863, 576, 435, 288, 144, 72, 36]
+
+precision    recall  f1-score   support
+
+           0       0.90      0.91      0.90      2928
+           1       0.80      0.83      0.82      2133
+           2       0.97      0.96      0.96     13874
+           3       0.90      0.84      0.87      1078
+           4       0.24      0.55      0.34        53
+           5       0.87      0.85      0.86      1725
+           6       0.94      1.00      0.97       578
+           7       0.99      0.99      0.99      1313
+           8       0.82      0.75      0.78       111
+           9       0.88      0.95      0.91       449
+          10       0.73      0.45      0.56        42
+
+    accuracy                           0.93     24284
+   macro avg       0.82      0.83      0.82     24284
+weighted avg       0.93      0.93      0.93     24284
+
+4. Fully connected NN #9
+Сделала стратификацию, упростила архитектуру
+
+hidden_size=[288, 144, 72, 36]
+epochs = 50
+
+self.Network = nn.Sequential(
+            nn.Flatten(),
+
+            nn.Linear(in_size, hidden_size[0]),
+            nn.ReLU(),
+            nn.BatchNorm1d(hidden_size[0]),
+
+            nn.Linear(hidden_size[0], hidden_size[1]),
+            nn.ReLU(),
+            nn.BatchNorm1d(hidden_size[1]),
+
+            nn.Linear(hidden_size[1], hidden_size[2]),
+            nn.ReLU(),
+            nn.BatchNorm1d(hidden_size[2]),
+
+            nn.Linear(hidden_size[2], hidden_size[3]),
+            nn.ReLU(),
+            nn.BatchNorm1d(hidden_size[3]),
+
+            nn.Linear(hidden_size[3], out_size),
+        )
+
+precision    recall  f1-score   support
+
+           0       0.91      0.90      0.90      2325
+           1       0.76      0.87      0.81      1691
+           2       0.97      0.96      0.96     11115
+           3       0.88      0.90      0.89       828
+           4       0.68      0.52      0.59        48
+           5       0.91      0.82      0.86      1370
+           6       0.96      0.99      0.97       500
+           7       0.99      1.00      1.00      1034
+           8       0.90      0.81      0.85       103
+           9       0.93      0.87      0.90       390
+          10       0.70      0.83      0.76        23
+
+    accuracy                           0.93     19427
+   macro avg       0.87      0.86      0.86     19427
+weighted avg       0.93      0.93      0.93     19427
+
+4. Fully connected NN #10
+
+batch_size = 32
+
+precision    recall  f1-score   support
+
+           0       0.88      0.91      0.90      2387
+           1       0.84      0.77      0.80      1661
+           2       0.95      0.98      0.97     11084
+           3       0.91      0.79      0.85       823
+           4       0.83      0.45      0.59        33
+           5       0.90      0.82      0.86      1416
+           6       0.97      0.98      0.97       445
+           7       0.99      1.00      0.99      1047
+           8       0.89      0.78      0.83       103
+           9       0.93      0.90      0.91       398
+          10       0.92      0.77      0.84        30
+
+    accuracy                           0.93     19427
+   macro avg       0.91      0.83      0.86     19427
+weighted avg       0.93      0.93      0.93     19427
+
+4. Fully connected NN #11
+weight_decay=0.001)
+
+precision    recall  f1-score   support
+
+           0       0.84      0.83      0.84      2444
+           1       0.75      0.44      0.55      1673
+           2       0.89      0.97      0.93     11013
+           3       0.67      0.67      0.67       837
+           4       0.00      0.00      0.00        35
+           5       0.71      0.67      0.69      1412
+           6       0.93      0.60      0.73       454
+           7       0.98      0.99      0.99      1040
+           8       0.69      0.82      0.75        92
+           9       0.86      0.70      0.77       400
+          10       0.26      0.41      0.32        27
+
+    accuracy                           0.86     19427
+   macro avg       0.69      0.65      0.66     19427
+weighted avg       0.85      0.86      0.85     19427
+
+
+4. Fully connected NN #12
+
+Убрала weight_decay=0.001
+feature_names = ['DEPTH_MD', 'X_LOC', 'Y_LOC', 'Z_LOC', 'CALI', 'RMED', 'RDEP', 'RHOB',
+                 'GR', 'NPHI', 'PEF', 'DTC', 'BS', 'DTS', 'DRHO']
+
+precision    recall  f1-score   support
+
+           0       0.84      0.92      0.88      2333
+           1       0.82      0.72      0.77      1627
+           2       0.96      0.96      0.96     11252
+           3       0.85      0.88      0.86       811
+           4       0.86      0.41      0.55        44
+           5       0.90      0.83      0.86      1379
+           6       0.98      0.99      0.98       476
+           7       0.99      1.00      0.99      1005
+           8       0.78      0.81      0.79        94
+           9       0.82      0.96      0.88       381
+          10       0.86      0.72      0.78        25
+
+    accuracy                           0.92     19427
+   macro avg       0.88      0.84      0.85     19427
+weighted avg       0.92      0.92      0.92     19427
+
+4. Fully connected NN #13
+ 
+Все фитчи, изменила оптимайзер на optim.Adagrad
+
+precision    recall  f1-score   support
+
+           0       0.89      0.91      0.90      2400
+           1       0.80      0.80      0.80      1643
+           2       0.96      0.96      0.96     11094
+           3       0.86      0.89      0.88       856
+           4       0.74      0.40      0.52        42
+           5       0.90      0.84      0.87      1389
+           6       0.96      0.98      0.97       469
+           7       0.99      0.99      0.99      1018
+           8       0.89      0.80      0.84       105
+           9       0.89      0.92      0.91       379
+          10       0.62      0.94      0.75        32
+
+    accuracy                           0.93     19427
+   macro avg       0.87      0.86      0.85     19427
+weighted avg       0.93      0.93      0.93     19427
+
+4. СNN #1
+
+model = nn.Sequential(
+    nn.Conv1d(1, 64, 3, padding=1),
+    nn.ReLU(),
+    nn.Conv1d(64, 128, 3, padding=1),
+    nn.ReLU(),
+    nn.Conv1d(128, 64, 3, padding=1),
+    nn.ReLU(),
+    nn.Conv1d(64, 64, 3, padding=1),
+    nn.ReLU(),
+    # nn.Conv1d(64, 128, 3, padding=1),
+    # nn.ReLU(),
+    # nn.Conv1d(128, 128, 3, padding=1),
+    # nn.ReLU(),
+    # nn.Conv1d(128, 128, 1, padding=1),
+    nn.Flatten(),
+    nn.Linear(1152, 32),
+    nn.ReLU(),
+    nn.Linear(32, len(target_name))
+)
+
+optimizer = optim.Adam(params=model.parameters(), lr=0.001, weight_decay=0.001)
+loss_function = nn.CrossEntropyLoss()
+epochs = 50
+batch_size=64
+
+precision    recall  f1-score   support
+
+           0       0.87      0.84      0.85      2923
+           1       0.72      0.68      0.70      2120
+           2       0.93      0.96      0.95     13844
+           3       0.81      0.77      0.79      1064
+           4       0.55      0.38      0.45        61
+           5       0.85      0.78      0.81      1731
+           6       0.94      0.96      0.95       599
+           7       0.99      1.00      0.99      1290
+           8       0.83      0.65      0.73       115
+           9       0.83      0.90      0.86       501
+          10       0.76      0.86      0.81        36
+
+    accuracy                           0.90     24284
+   macro avg       0.83      0.80      0.81     24284
+weighted avg       0.90      0.90      0.90     24284
+
+4. СNN #2
+Стратифицированная выборка, остальное все также
+
+              precision    recall  f1-score   support
+
+           0       0.85      0.91      0.88      2393
+           1       0.76      0.74      0.75      1714
+           2       0.95      0.96      0.96     11033
+           3       0.88      0.83      0.85       832
+           4       0.92      0.24      0.38        46
+           5       0.89      0.77      0.82      1354
+           6       0.91      0.99      0.95       482
+           7       0.99      1.00      0.99      1067
+           8       0.87      0.81      0.84       114
+           9       0.88      0.93      0.90       361
+          10       0.88      0.68      0.76        31
+
+    accuracy                           0.92     19427
+   macro avg       0.89      0.80      0.83     19427
+weighted avg       0.92      0.92      0.91     19427
+
+4. СNN #3
+Добавила n.BatchNorm1d()
+кол-во эпох 20
+
+precision    recall  f1-score   support
+
+           0       0.88      0.90      0.89      2319
+           1       0.80      0.74      0.77      1703
+           2       0.95      0.96      0.96     11099
+           3       0.85      0.86      0.86       874
+           4       0.85      0.24      0.37        46
+           5       0.86      0.83      0.85      1372
+           6       0.97      0.98      0.98       496
+           7       0.98      1.00      0.99      1011
+           8       0.79      0.77      0.78        96
+           9       0.91      0.92      0.92       385
+          10       0.86      0.69      0.77        26
+
+    accuracy                           0.92     19427
+   macro avg       0.88      0.81      0.83     19427
+weighted avg       0.92      0.92      0.92     19427
+
+4. СNN #4
+Убрала регуляризатор, и добавила 10 эпох, сейчас 30
+
+precision    recall  f1-score   support
+
+           0       0.90      0.90      0.90      2425
+           1       0.81      0.82      0.82      1675
+           2       0.96      0.97      0.97     11033
+           3       0.90      0.86      0.88       810
+           4       0.89      0.47      0.62        36
+           5       0.89      0.82      0.86      1428
+           6       0.97      1.00      0.98       424
+           7       0.99      1.00      0.99      1087
+           8       0.84      0.82      0.83        95
+           9       0.92      0.94      0.93       381
+          10       0.90      0.82      0.86        33
+
+    accuracy                           0.93     19427
+   macro avg       0.91      0.86      0.88     19427
+weighted avg       0.93      0.93      0.93     19427
+
+4. СNN #5
+Изменила архитектуру и epochs = 50
+
+model = nn.Sequential(
+    nn.Conv1d(1, 64, len(feature_names), padding=3),
+    nn.ReLU(),
+    nn.BatchNorm1d(64),
+    nn.Conv1d(64, 64, 3, padding=1),
+    nn.ReLU(),
+    nn.BatchNorm1d(64),
+    nn.Conv1d(64, 128, 3, padding=1),
+    nn.ReLU(),
+    nn.Conv1d(128, 64, 3, padding=1),
+    nn.ReLU(),
+    nn.BatchNorm1d(64),
+    nn.Conv1d(64, 64, 3, padding=1),
+    nn.ReLU(),
+    nn.BatchNorm1d(64),
+    nn.Flatten(),
+    nn.Linear(448, 576),
+    nn.ReLU(),
+    nn.BatchNorm1d(576),
+    nn.Linear(576, 32),
+    nn.ReLU(),
+    nn.BatchNorm1d(32),
+    nn.Linear(32, len(target_name))
+)
+
+precision    recall  f1-score   support
+
+           0       0.91      0.92      0.91      2389
+           1       0.86      0.82      0.84      1665
+           2       0.96      0.97      0.97     11161
+           3       0.87      0.90      0.88       812
+           4       0.86      0.60      0.71        50
+           5       0.89      0.84      0.86      1445
+           6       0.95      0.99      0.97       439
+           7       0.99      1.00      1.00      1009
+           8       0.89      0.88      0.88        82
+           9       0.93      0.94      0.93       339
+          10       0.86      0.86      0.86        36
+
+    accuracy                           0.94     19427
+   macro avg       0.91      0.88      0.89     19427
+weighted avg       0.94      0.94      0.94     19427
+
+4. СNN #6
+Изменила архитектуру и epochs = 100
+optimizer = optim.Adam(params=model.parameters(), lr=0.001, ) # weight_decay=0.001
+loss_function = nn.CrossEntropyLoss()
+
+model = nn.Sequential(
+    nn.Conv1d(1, 64, len(feature_names), padding=3),
+    nn.ReLU(),
+    nn.BatchNorm1d(64),
+    nn.Conv1d(64, 64, 5, padding=3),
+    nn.ReLU(),
+    nn.BatchNorm1d(64),
+    nn.Conv1d(64, 64, 3, padding=1),
+    nn.ReLU(),
+    nn.BatchNorm1d(64),
+    nn.Conv1d(64, 128, 3, padding=1),
+    nn.ReLU(),
+    nn.Conv1d(128, 64, 3, padding=1),
+    nn.ReLU(),
+    nn.BatchNorm1d(64),
+    nn.Conv1d(64, 64, 3, padding=1),
+    nn.ReLU(),
+    nn.BatchNorm1d(64),
+
+    nn.Flatten(),
+    nn.Linear(576, 300),
+    nn.ReLU(),
+    nn.BatchNorm1d(300),
+    nn.Linear(300, 32),
+    nn.ReLU(),
+    nn.BatchNorm1d(32),
+    nn.Linear(32, len(target_name))
+)
+
+precision    recall  f1-score   support
+
+           0       0.91      0.91      0.91      2299
+           1       0.85      0.85      0.85      1731
+           2       0.97      0.97      0.97     11099
+           3       0.89      0.91      0.90       874
+           4       0.57      0.50      0.53        32
+           5       0.90      0.83      0.86      1370
+           6       0.97      0.98      0.98       456
+           7       0.99      1.00      0.99      1060
+           8       0.89      0.74      0.80        95
+           9       0.93      0.95      0.94       379
+          10       0.74      0.88      0.80        32
+
+    accuracy                           0.94     19427
+   macro avg       0.87      0.87      0.87     19427
+weighted avg       0.94      0.94      0.94     19427
